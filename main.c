@@ -3,7 +3,7 @@
 void print() {
 	int loginChoice;
 	loginStart:
-	system("cls"); // system("clear"); for linux
+	system("clear"); // system("clear"); for linux
 	printf("******Available login options******\n");
 	printf("Press 1 for Owner\nPress 2 for Customer\nPress 3 to exit\n");
 	scanf("%d",&loginChoice);
@@ -15,8 +15,9 @@ void print() {
 		case 3: printf("Thank you!");
 				getchar();
 				break;
-		default: printf("Invalid chocie. Try again.");
-				 print();
+		default: printf("Invalid chocie. Try again.\n");
+
+				 goto loginStart;
 	}
 }
 int main()
