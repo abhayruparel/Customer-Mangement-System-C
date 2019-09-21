@@ -16,7 +16,6 @@ void print() {
 				getchar();
 				break;
 		default: printf("Invalid chocie. Try again.\n");
-
 				 goto loginStart;
 	}
 }
