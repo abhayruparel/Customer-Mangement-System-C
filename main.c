@@ -4,12 +4,12 @@
 #include "stdlib.h"
 void ownerLogin();
 int validateUser();
-void displayProjects();
+void displayProjectsT7();
 void displayGoodsT8();
 struct projectDetail {
 	char name[50], contractor[50];
 	int isActive;
-}project[10];
+}project[5];
 struct productDetails {
 	char brand_name[50], item_name[50];
 	float price;
@@ -21,13 +21,13 @@ void optLogin() {
 	loginStart:
 	system("cls"); // system("clear"); for linux
 	printf("************Available login options************\n");
-	printf("Press 1 for Owner Login\nPress 2 to display all projects\nPress 3 to show all Goods Details\nPress 4 to exit\n");
+	printf("Press 1. for Owner Login\nPress 2. Display all the active projects being handled by the contractor named \"Mohan\" or \"Shyamlal\"\nPress 3. Display all the items which are currently available in the stock\nPress 4 to exit\n");
 	scanf("%d",&loginChoice);
 	switch(loginChoice) {
 		case 1: printf("Onwer login page");
 				ownerLogin();
 				break;
-		case 2: displayProjects();
+		case 2: displayProjectsT7();
 				break;
 		case 3: displayGoodsT8();
 				break;
@@ -59,21 +59,34 @@ void ownerLogin() {
 	scanf("%[^\n]%*c",pw);
 	s=validateUser(ch,pw);
 }
-void displayProjects() {
+void displayProjectsT7() {
 	int i;
 	strcpy(project[0].name,"Abhay's site");
+	strcpy(project[0].contractor,"Abhay");
 	project[0].isActive=1;
-	strcpy(project[1].name,"Aditya Sir's Site");
+	strcpy(project[1].name,"Mohan Site");
+	strcpy(project[1].contractor,"Mohan");
 	project[1].isActive=1;
 	strcpy(project[2].name,"WhiteWashing");
+	strcpy(project[2].contractor,"Mohan");
 	project[2].isActive=1;
-	strcpy(project[3].name,"RamBhai Pro");
+	strcpy(project[3].name,"Shyamlal");
+	strcpy(project[3].contractor,"Shyamlal");
 	project[3].isActive=1;
 	strcpy(project[4].name,"Shyamlalbhai more pro");
+	strcpy(project[4].contractor,"Shyamlal");
 	project[4].isActive=1;
+	printf("Projects of mohan\n");
 	for (i=0;i<5;i++) {
-		printf("project name%d:%s\n",i,project[i].name);
-		
+		if ( strcmp (project[i].contractor,"Mohan") == 0 ) {
+			printf("project name%d:%s\n",i,project[i].name);
+		}
+	}
+	printf("Projects of Shyamlal\n");
+	for (i=0;i<5;i++) {
+		if ( strcmp (project[i].contractor,"Shyamlal") == 0 ) {
+			printf("project name%d:%s\n",i,project[i].name);
+		}
 	}
 	
 }
@@ -88,9 +101,9 @@ void displayGoodsT8() {
 		else {
 			item[i].isAvailable=0;
 		}
-	}
-	if ( item[i].isAvailable==1) {
-		printf("%s | %s | %.2f | %d\n",item[i].item_name,item[i].brand_name,item[i].price,item[i].quantity);
+		if ( item[i].isAvailable==1) {
+			printf("%s | %s | %.2f | %d\n",item[i].item_name,item[i].brand_name,item[i].price,item[i].quantity);
+		}
 	}
 }
 int validateUser(char ch[],char pw[]) {
