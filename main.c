@@ -5,18 +5,23 @@
 void ownerLogin();
 int validateUser();
 void displayProjects();
-
+void displayGoodsT8();
 struct projectDetail {
-	char name[50];
+	char name[50], contractor[50];
 	int isActive;
 }project[10];
+struct productDetails {
+	char brand_name[50], item_name[50];
+	float price;
+	int quantity, isAvailable;
+}item[10];
 void optLogin() {
 	int loginChoice;
 	char ch;
 	loginStart:
 	system("cls"); // system("clear"); for linux
-	printf("******Available login options******\n");
-	printf("Press 1 for Owner Login\nPress 2 to display all projects\nPress 3 to exit\n");
+	printf("************Available login options************\n");
+	printf("Press 1 for Owner Login\nPress 2 to display all projects\nPress 3 to show all Goods Details\nPress 4 to exit\n");
 	scanf("%d",&loginChoice);
 	switch(loginChoice) {
 		case 1: printf("Onwer login page");
@@ -24,7 +29,9 @@ void optLogin() {
 				break;
 		case 2: displayProjects();
 				break;
-		case 3: printf("Thank you!");
+		case 3: displayGoodsT8();
+				break;
+		case 4: printf("Thank you!");
 				sleep(3);
 				break;
 		default: printf("Invalid chocie. Try again.");
@@ -70,12 +77,32 @@ void displayProjects() {
 	}
 	
 }
+void displayGoodsT8() {
+	int i;
+	printf("Available gooods are:\n");
+	printf("Item name | Item Brand | Item Price | Quantity available\n");
+	for (i=0;i<10;i++) {
+		if ( item[i].quantity > 0) {
+			item[i].isAvailable=1;
+		}
+		else {
+			item[i].isAvailable=0;
+		}
+	}
+	if ( item[i].isAvailable==1) {
+		printf("%s | %s | %.2f | %d\n",item[i].item_name,item[i].brand_name,item[i].price,item[i].quantity);
+	}
+}
 int validateUser(char ch[],char pw[]) {
 	printf("Inside validateUser() %s and %s values are caught",ch,pw);
 	return 0;
 }
 int main()
 {
+	strcpy(item[0].brand_name,"asian paints");
+	strcpy(item[0].item_name,"Teflon Coated Paint blue color");
+	item[0].price=300.00;
+	item[0].quantity=30;
 	optLogin();
 	return 0;
 }
