@@ -19,7 +19,7 @@ void optLogin() {
 	int loginChoice;
 	char ch;
 	loginStart:
-	system("cls"); // system("clear"); for linux
+	system("clear"); // system("cls"); for windows
 	printf("************Available login options************\n");
 	printf("Press 1. for Owner Login\nPress 2. Display all the active projects being handled by the contractor named \"Mohan\" or \"Shyamlal\"\nPress 3. Display all the items which are currently available in the stock\nPress 4 to exit\n");
 	scanf("%d",&loginChoice);
